@@ -23,13 +23,13 @@ func New(opts ...Option) (a *Authority, err error) {
 		db:     options.db,
 	}
 
+	auth = a
+
 	if options.migrate.Valid && (options.migrate.Bool == true) {
 		if err = a.db.AutoMigrate(&Role{}, &Permission{}, &RolePermission{}, &UserRole{}); err != nil {
 			return nil, err
 		}
 	}
-
-	auth = a
 
 	return a, nil
 }
