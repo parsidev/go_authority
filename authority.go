@@ -400,3 +400,23 @@ func (a *Authority) DeletePermission(permID uint64) (err error) {
 
 	return nil
 }
+
+func (a *Authority) GetPermission(permName string) (permission *Permission, err error) {
+	permission = new(Permission)
+
+	if err = a.db.Where("name = ?", permName).First(&permission).Error; err != nil {
+		return nil, err
+	}
+
+	return permission, nil
+}
+
+func (a *Authority) GetRole(roleName string) (role *Role, err error) {
+	role = new(Role)
+
+	if err = a.db.Where("name = ?", roleName).First(&role).Error; err != nil {
+		return nil, err
+	}
+
+	return role, nil
+}
