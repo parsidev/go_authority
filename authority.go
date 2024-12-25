@@ -289,7 +289,7 @@ func (a *Authority) GetUserRoles(userID uint64) (roles Roles, err error) {
 		roleIDs = append(roleIDs, uR.RoleID)
 	}
 
-	if a.db.Where("id IN (?)", roleIDs).Find(roles).Error != nil {
+	if a.db.Where("id IN (?)", roleIDs).Find(&roles).Error != nil {
 		return nil, err
 	}
 
@@ -312,7 +312,7 @@ func (a *Authority) GetRolePermissions(roleID uint64) (permissions Permissions, 
 		permIDs = append(permIDs, p.PermissionID)
 	}
 
-	if a.db.Where("id IN (?)", permIDs).Find(permissions).Error != nil {
+	if a.db.Where("id IN (?)", permIDs).Find(&permissions).Error != nil {
 		return nil, err
 	}
 
