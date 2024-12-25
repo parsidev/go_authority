@@ -48,7 +48,7 @@ func (a *Authority) CreateRole(r *Role) (err error) {
 		return err
 	}
 
-	if err != nil {
+	if err == nil && role.IsValid() {
 		return errors.New(fmt.Sprintf("role '%v' already exists", rName))
 
 	}
@@ -70,7 +70,7 @@ func (a *Authority) CreatePermission(p *Permission) (err error) {
 		return err
 	}
 
-	if err != nil {
+	if err == nil && permission.IsValid() {
 		return errors.New(fmt.Sprintf("permission '%v' already exists", pName))
 	}
 
