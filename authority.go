@@ -95,6 +95,7 @@ func (a *Authority) AssignPermissionsToRole(req *RolePermissionRequest) (err err
 	}
 
 	for _, permID := range req.PermissionIDs {
+		permission      = new(Permission)
 		if err = a.db.First(&permission, "id = ?", permID).Error; err != nil {
 			continue
 		}
